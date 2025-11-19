@@ -17,7 +17,7 @@ const team = [
     name: 'Sarah Johnson',
     role: 'Vice Principal',
     desc: 'Experienced technical educator preparing students for modern workforce challenges. Inspires curiosity.',
-    image: '/public/imgs/Vice Principal Accedemic (1).jpg'
+    image: '/imgs/Vice Principal Accedemic (1).jpg'
   }
 ];
 

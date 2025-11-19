@@ -3,9 +3,81 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Yosola School - Excellence in Education</title>
+    
+    <!-- ===================================================================
+         PREMIUM SEO & METADATA
+         Targeting: Parents seeking excellence, safety, and innovation.
+    ==================================================================== -->
+    
+    <!-- 1. Title & Favicon -->
+    <title>Yosola School | Building Brilliant Minds | Admissions Open</title>
+    <link rel="icon" type="image/png" href="/imgs/school-logo.png" />
+    
+    <!-- 2. Meta Description (The "Ad Copy" for Google) -->
+    <meta name="description" content="Empower your child at Yosola School. We combine academic excellence with moral values and cutting-edge STEAM learning. From Nursery to SS3. Apply today." />
+    
+    <!-- 3. Keywords (Semantic Core) -->
+    <meta name="keywords" content="Yosola School, Best Private School, British Curriculum, STEAM Education, Nursery, Primary, Secondary School, Admission, Nigeria, Education" />
+    
+    <!-- 4. Author & Robots -->
+    <meta name="author" content="Yosola School" />
+    <meta name="robots" content="index, follow" /> 
+    <meta name="theme-color" content="#0c4a6e" /> <!-- Matches school-900 -->
+
+    <!-- ===================================================================
+         SOCIAL MEDIA PREVIEWS (Open Graph)
+         Makes links look professional on WhatsApp/Facebook
+    ==================================================================== -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.yosolaschool.com/" /> <!-- Change to real URL later -->
+    <meta property="og:title" content="Yosola School - Building Brilliant Minds" />
+    <meta property="og:description" content="Join a community dedicated to academic excellence and character building. Discover our facilities and curriculum today." />
+    <meta property="og:image" content="/imgs/social-share-preview.jpg" /> <!-- 1200x630px image -->
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Yosola School | Admissions Open" />
+    <meta name="twitter:description" content="Give your child the advantage of a world-class education at Yosola School." />
+    <meta name="twitter:image" content="/imgs/social-share-preview.jpg" />
+
+    <!-- ===================================================================
+         SCHEMA MARKUP (JSON-LD)
+         Tells Google this is an Educational Organization
+    ==================================================================== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "School",
+        "name": "Yosola School",
+        "url": "https://www.yosolaschool.com",
+        "logo": "https://www.yosolaschool.com/imgs/school-logo.png",
+        "sameAs": [
+          "https://www.facebook.com/yosolaschool",
+          "https://www.instagram.com/yosolaschool"
+        ],
+        "description": "A leading private school offering Nursery, Primary, and Secondary education.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Your School Street Address",
+          "addressLocality": "Lagos", 
+          "addressRegion": "LA",
+          "postalCode": "100001",
+          "addressCountry": "NG"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+234-800-000-0000",
+          "contactType": "admissions"
+        }
+      }
+    </script>
+
+    <!-- ===================================================================
+         STYLES & SCRIPTS (Existing Config)
+    ==================================================================== -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
     <script>
       tailwind.config = {
         theme: {
@@ -31,19 +103,21 @@
         }
       }
     </script>
-  <script type="importmap">
-{
-  "imports": {
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
+    
+    <script type="importmap">
+    {
+      "imports": {
+        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+        "react/": "https://aistudiocdn.com/react@^19.2.0/",
+        "react": "https://aistudiocdn.com/react@^19.2.0",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
+      }
+    }
+    </script>
+    <link rel="stylesheet" href="/index.css">
+  </head>
+  
   <body class="bg-slate-50 text-slate-800 antialiased">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>

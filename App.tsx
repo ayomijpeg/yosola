@@ -10,6 +10,7 @@ import Admissions from './components/Admissions';
 import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
 
+
 function App() {
   return (
     <div className="font-sans scroll-smooth">

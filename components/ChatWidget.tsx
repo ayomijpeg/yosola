@@ -76,7 +76,7 @@ const ChatWidget: React.FC = () => {
               <Sparkles size={18} className="text-accent-400" />
               <span className="font-semibold">Admissions AI</span>
             </div>
-            <button onClick={() => setIsOpen(false)} className="hover:bg-school-700 p-1 rounded-full">
+            <button  title="open" onClick={() => setIsOpen(false)} className="hover:bg-school-700 p-1 rounded-full">
               <X size={20} />
             </button>
           </div>
@@ -122,6 +122,7 @@ const ChatWidget: React.FC = () => {
                 className="flex-1 px-4 py-2 border border-slate-200 rounded-full focus:outline-none focus:ring-2 focus:ring-school-500 text-sm"
               />
               <button
+               title="send"
                 onClick={handleSend}
                 disabled={loadingState === LoadingState.LOADING || !input.trim()}
                 className="bg-school-600 text-white p-2 rounded-full hover:bg-school-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
