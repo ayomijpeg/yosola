@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
             />
             
             <span className={`text-2xl font-serif font-bold ${isScrolled ? 'text-school-900' : 'text-white'}`}>
-              Yosola School
+              Yosola Schools
             </span>
           </div>
           {/* --- LOGO SECTION END --- */}

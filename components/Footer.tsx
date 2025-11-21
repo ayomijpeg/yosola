@@ -56,15 +56,16 @@ const Footer: React.FC = () => {
              <ul className="space-y-4 text-slate-600">
                <li className="flex items-start space-x-3">
                  <MapPin size={20} className="text-accent-500 mt-1 flex-shrink-0" />
-                 <span>123 Education Lane,<br/>Ikorodu, Lagos State</span>
+                 <span>No, 17 Unity Cresent,<br/> Bamboo Bus Stop, <br/>  Along Nigeria Navy, <br/> 
+                  School Of Music, <br/> Akeja, Osi Ota.</span>
                </li>
                <li className="flex items-center space-x-3">
                  <Phone size={20} className="text-accent-500 flex-shrink-0" />
-                 <span>+234 800 123 4567</span>
+                 <span>+234 808 769 4737</span>
                </li>
                <li className="flex items-center space-x-3">
                  <Mail size={20} className="text-accent-500 flex-shrink-0" />
-                 <span>info@yosolaschool.ng</span>
+                 <span>yorsolaschools@gmail.com</span>
                </li>
              </ul>
           </div>

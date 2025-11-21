@@ -4,21 +4,28 @@ const team = [
   {
     name: 'Mr. Sola Ajayi',
     role: 'Chairman',
-    desc: 'Dedicated leader with 15+ years of experience in education. Advocates for holistic student development.',
-    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+    desc: 'Dedicated leader with  years of experience in education. Advocates for holistic student development.',
+    image: '/imgs/chairman.jpg'
   },
   {
-    name: 'The Principal',
+    name: 'Mr. Samson Okpojivi',
     role: 'Principal',
     desc: 'Innovative educator specializing in curriculum development. Committed to creating impactful learning experiences.',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+    image: '/imgs/Principa Yosola School.jpg'
   },
   {
-    name: 'Sarah Johnson',
-    role: 'Vice Principal',
-    desc: 'Experienced technical educator preparing students for modern workforce challenges. Inspires curiosity.',
-    image: '/imgs/Vice Principal Accedemic (1).jpg'
+    name: 'Mrs. Kareem ',
+    role: 'Head Teacher',
+    desc: 'Experienced head teacher with a passion for student success. Focuses on fostering a positive school culture.',
+    image: '/imgs/HM Yosola Nusry  and Primary School Yosola.jpg'
+  },
+   {
+    name: 'Mrs. Oluwayomi Ajayi ',
+    role: 'Director of Vocational Studies',
+    desc: 'Passionate about vocational education with  years of experience. Empowers candidates with practical skills.',
+    image: '/imgs/vocation_head.jpg'
   }
+
 ];
 
 const Team: React.FC = () => {
