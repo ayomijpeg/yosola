@@ -2,7 +2,7 @@ import React from 'react';
 
 const team = [
   {
-    name: 'Mr. Sola Ajayi',
+    name: 'Mr. Ajayi Olusola ',
     role: 'Chairman',
     desc: 'Dedicated leader with  years of experience in education. Advocates for holistic student development.',
     image: '/imgs/chairman.jpg'
@@ -15,7 +15,7 @@ const team = [
   },
   {
     name: 'Mrs. Kareem ',
-    role: 'Head Teacher',
+    role: 'Head Mistress',
     desc: 'Experienced head teacher with a passion for student success. Focuses on fostering a positive school culture.',
     image: '/imgs/HM Yosola Nusry  and Primary School Yosola.jpg'
   },

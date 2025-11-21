@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
               </span>
             </div>
             <p className="text-slate-500 mb-6">
-              Since 20, we have been committed to fostering academic excellence and character development in every student.
+              Since February 2021, we have been committed to fostering academic excellence and character development in every student.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="p-2 bg-white rounded-full text-slate-400 hover:text-school-600 shadow-sm border border-slate-100 transition-colors">
@@ -57,7 +57,7 @@ const Footer: React.FC = () => {
                <li className="flex items-start space-x-3">
                  <MapPin size={20} className="text-accent-500 mt-1 flex-shrink-0" />
                  <span>No, 17 Unity Cresent,<br/> Bamboo Bus Stop, <br/>  Along Nigeria Navy, <br/> 
-                  School Of Music, <br/> Akeja, Osi Ota.</span>
+                  School Of Music, <br/> Akeja, Osi Ota <br/> Ogun State.</span>
                </li>
                <li className="flex items-center space-x-3">
                  <Phone size={20} className="text-accent-500 flex-shrink-0" />
