@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, LogIn } from 'lucide-react'; // Added LogIn icon
 
 // 1. Update these paths to match exactly where your files are in the "public" folder.
-// Note: You had "imgs" for one and "img" for the other. Make sure folders exist!
 const backgroundImages = [
   '/imgs/banner2.jpg', 
   '/imgs/banner1.jpg',
   '/imgs/Banner3.jpeg',
-  // Add a 3rd one if you want, or it will just toggle between these two
 ];
 
 const Hero: React.FC = () => {
@@ -43,7 +41,7 @@ const Hero: React.FC = () => {
         </div>
       ))}
 
-      {/* 4. Static Overlay (Keeps text readable regardless of image) */}
+      {/* 4. Static Overlay */}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-school-900/90 via-school-900/60 to-school-900/80" />
 
       {/* Content */}
@@ -54,17 +52,31 @@ const Hero: React.FC = () => {
         <p className="text-lg md:text-2xl text-slate-200 mb-10 max-w-3xl mx-auto font-light leading-relaxed">
           Collaborative classrooms, innovative programs, and a supportive family–that’s the Yosola promise.
         </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+        
+        {/* Buttons Container */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
           <a
             href="#programs"
-            className="px-8 py-4 bg-accent-500 hover:bg-accent-400 text-white rounded-full font-semibold text-lg transition-all shadow-lg hover:shadow-accent-500/30 flex items-center"
+            className="w-full sm:w-auto px-8 py-4 bg-accent-500 hover:bg-accent-400 text-white rounded-full font-semibold text-lg transition-all shadow-lg hover:shadow-accent-500/30 flex items-center justify-center"
           >
             Explore Programs
             <ArrowRight className="ml-2" size={20} />
           </a>
+
+          {/* New School Portal Button */}
+          <a
+            href="https://school-manager-navy.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto px-8 py-4 bg-white text-school-900 hover:bg-slate-100 rounded-full font-semibold text-lg transition-all shadow-lg flex items-center justify-center"
+          >
+            School Portal
+            <LogIn className="ml-2" size={20} />
+          </a>
+
           <a
             href="#contact"
-            className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/30 hover:bg-white/20 text-white rounded-full font-semibold text-lg transition-all"
+            className="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/30 hover:bg-white/20 text-white rounded-full font-semibold text-lg transition-all flex items-center justify-center"
           >
             Contact Us
           </a>
