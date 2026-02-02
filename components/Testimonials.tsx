@@ -3,10 +3,9 @@ import { Quote } from 'lucide-react';
 
 const testimonials = [
   {
-    name: 'Brandon Vega',
-    role: 'Happy Family',
-    content: 'Yosola School has been a transformative experience for my children. The blend of traditional academics with technical education has equipped them with essential life skills.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80'
+    name: 'Mrs Adebayo',
+    role: 'Parent',
+    content: 'I have a Daughter in Yosola Schools, since I enrolled my daughter into the school, I have noticed a lot of improvement in her academics and social life. Yosola should continue the good work and God will continue to raise them higher than their expectations in Jesus name.',
   },
   {
     name: 'Chris Wei',
@@ -21,6 +20,8 @@ const testimonials = [
     image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80'
   }
 ];
+
+const DUMMY_AVATAR = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
 
 const Testimonials: React.FC = () => {
   return (
@@ -38,7 +39,11 @@ const Testimonials: React.FC = () => {
               <Quote className="text-accent-500 mb-6" size={40} />
               <p className="text-lg text-slate-200 mb-8 italic">"{item.content}"</p>
               <div className="flex items-center space-x-4">
-                <img src={item.image} alt={item.name} className="w-12 h-12 rounded-full object-cover border-2 border-accent-500" />
+                <img 
+                  src={item.image || DUMMY_AVATAR} 
+                  alt={item.name} 
+                  className="w-12 h-12 rounded-full object-cover border-2 border-accent-500" 
+                />
                 <div>
                   <h4 className="font-bold text-white">{item.name}</h4>
                   <p className="text-sm text-slate-400">{item.role}</p>
