@@ -8,17 +8,17 @@ const testimonials = [
     content: 'I have a Daughter in Yosola Schools, since I enrolled my daughter into the school, I have noticed a lot of improvement in her academics and social life. Yosola should continue the good work and God will continue to raise them higher than their expectations in Jesus name.',
   },
   {
-    name: 'Chris Wei',
-    role: 'Proud Guardian',
-    content: 'At Yosola College, the commitment to nurturing well-rounded individuals is evident. My child not only excelled academically but also developed a passion for technology.',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80'
-  },
-  {
-    name: 'Karen Weiss',
-    role: 'Concerned Parent',
-    content: 'Choosing Yosola School was one of the best decisions I made. The school’s innovative approach combines core subjects with practical skills perfectly.',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80'
+    name: 'Mr Akpojivi Samson',
+    role: 'Principal',
+    content: ' Our school has been wonderful since it was established in the year 2021. We have been providing vocational learning even before the government made it part of the curriculum. We also have a vocational school that teaches skills like Garment making, Catering and hospitality and coding which entails front end and back end development. I also want to tell you that Yosola Schools is approved by the government for the writing of waec and neco. Our vocational school is also approved by the government. Recently, we trained over 300 students for the ogun state government under the program, Ogun state skills fund(OSF). So, we are doing very well, let me just say that the sky will not limit us.',
+    //image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80'
   }
+  // {
+  //   name: 'Karen Weiss',
+  //   role: 'Concerned Parent',
+  //   content: 'Choosing Yosola School was one of the best decisions I made. The school’s innovative approach combines core subjects with practical skills perfectly.',
+  //   image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80'
+  // }
 ];
 
 const DUMMY_AVATAR = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";

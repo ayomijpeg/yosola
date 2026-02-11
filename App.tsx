@@ -29,7 +29,7 @@ function App() {
       <Footer />
       
       {/* Gemini Powered Chat Bot */}
-      <ChatWidget />
+      {/* <ChatWidget /> */}
     </div>
   );
 }
