@@ -77,6 +77,7 @@ const Footer: React.FC = () => {
               <li><a href="#admissions" className="hover:text-school-600 transition-colors">Admissions</a></li>
               <li><a href="#testimonials" className="hover:text-school-600 transition-colors">Testimonials</a></li>
               <li><a href="#contact" className="hover:text-school-600 transition-colors">Contact Us</a></li>
+              <li><a href="https://yosola.vercel.app/" className="hover:text-school-600 transition-colors">School Website</a></li>
             </ul>
           </div>
 
