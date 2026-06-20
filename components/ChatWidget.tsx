@@ -14,6 +14,11 @@ enum LoadingState {
   ERROR
 }
 
+// Caps how many past messages get sent to the API on each turn.
+// Keeps token usage (and cost) flat as a conversation grows long,
+// instead of resending the entire chat history every single message.
+const MAX_HISTORY_MESSAGES = 10;
+
 const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -50,8 +55,8 @@ const ChatWidget: React.FC = () => {
     setLoadingState(LoadingState.LOADING);
 
     try {
-      // Logic: Remove welcome message for API context
-      const historyMessages = messages.slice(1); 
+      // Logic: Remove welcome message, then cap history length for the API call
+      const historyMessages = messages.slice(1).slice(-MAX_HISTORY_MESSAGES);
       const historyForApi = historyMessages.map(m => ({
         role: m.role,
         parts: [{ text: m.text }]
