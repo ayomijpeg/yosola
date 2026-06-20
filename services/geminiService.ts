@@ -1,41 +1,40 @@
 /// <reference types="vite/client" />
 
+import { GoogleGenAI } from '@google/genai';
+
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-// 1. UPDATED KNOWLEDGE BASE
+
+// 1. UPDATED KNOWLEDGE BASE (Merged with Mission, Vision & Advantages)
 const SCHOOL_CONTEXT = `
 OFFICIAL KNOWLEDGE BASE FOR YOSOLA SCHOOL:
 
-[IDENTITY & CONTACT]
-- Name: Yosola School (Yosola Educational Services)
-- Motto: "Excellence in Character and Learning"
+[IDENTITY & MISSION]
+- Name: Yosola Schools (Yosola Educational Services)
+- Slogan: "Where We Are Building Geniuses."
+- Vision: To lead holistic, inclusive, innovative world-class education.
+- Mission: To promote lifelong learning in an open and caring atmosphere that motivates students to be confident and responsible global citizens.
+
+[CONTACT DETAILS]
 - Address: No. 17 Unity Crescent, Bamboo Bus Stop, Along Nigeria Navy School of Music, Akeja, Osi Ota, Ogun State.
 - Phone: +234 808 769 4737
 - Email: yorsolaschools@gmail.com
 - Office Hours: Monday - Friday, 7:30 AM - 4:00 PM.
 
-[WHY CHOOSE YOSOLA?]
-- Dual Curriculum: We blend British and Nigerian academic standards.
-- Vocational Focus: Unlike regular schools, we teach trade skills (Fashion, Catering, Tech) so students graduate as entrepreneurs.
-- Holistic Growth: We focus on character, discipline, and leadership, not just grades.
+[THE YOSOLA ADVANTAGE (CORE SELLING POINTS)]
+1. Academic Excellence: We provide quality education with experienced teachers and excellent learning resources.
+2. Moral & Character Development: We nurture disciplined, responsible, and confident students through strong moral values.
+3. Modern Learning Environment: Well-equipped classrooms, science laboratories, and ICT facilities.
+4. Extracurricular & Vocational: Entrepreneurship training in Garment making, Catering, Cosmetology, Phone repair, and Coding.
+5. Secure Learning Environment: Safe campus with personalized attention.
 
 [ACADEMICS]
-- Nursery (Ages 3-5): Play-based learning, phonics foundation, social development.
-- Primary (Ages 6-11): Mathematics, English, Sciences, French, Music, and STEAM education.
-- Junior Secondary (JSS 1-3): Prepares students for BECE; strong emphasis on critical thinking and basic technology.
-- Senior Secondary (SSS 1-3): Specialized tracks in Science, Arts, and Commercial departments.
-
-[VOCATIONAL WING (UNIQUE SELLING POINT)]
-- Availability: Open to registered students and external candidates.
-- Courses:
-  1. Fashion Design & Garment Making
-  2. Hospitality, Catering & Cosmetology
-  3. ICT, Coding & Robotics
-- Goal: Producing self-reliant, skilled graduates.
+- Nursery (Ages 3-5), Primary (Ages 6-11), Junior Secondary (JSS 1-3), Senior Secondary (SSS 1-3).
+- Dual Curriculum: British and Nigerian academic standards.
 
 [ADMISSIONS GUIDE]
 - Step 1: Purchase the admission form at the school office.
 - Step 2: Submit the form with 2 passport photographs and a birth certificate.
-- Step 3: Candidate takes the Entrance Assessment (Mathematics & English focus).
+- Step 3: Candidate takes the Entrance Assessment.
 - Step 4: Parent & Student Interview with the Head of School.
 - Step 5: Successful candidates receive an Offer Letter.
 
@@ -51,144 +50,53 @@ OFFICIAL KNOWLEDGE BASE FOR YOSOLA SCHOOL:
 - Fees: Tuition details are provided physically at the office or via phone inquiry.
 `;
 
-// 2. UPDATED BEHAVIOR RULES
+// 2. SYSTEM INSTRUCTION (Behavior Rules)
 const SYSTEM_INSTRUCTION = `
-ROLE:
-You are "Yosola Bot", the friendly and professional Admissions Assistant for Yosola School.
-
-YOUR GOAL:
-Convince parents that Yosola School is the best place for their child by providing accurate, helpful information based strictly on the context provided.
+ROLE: You are "Yosola Bot", the friendly and professional Admissions Assistant for Yosola Schools.
+YOUR GOAL: Help parents by providing accurate information based strictly on the context provided and convince them Yosola is the best choice.
 
 GUIDELINES:
-1. **Be Warm & Welcoming**: Start answers with a polite tone (e.g., "That's a great question!").
-2. **Stick to Facts**: Use the "OFFICIAL KNOWLEDGE BASE" above. Do not invent facilities or policies.
-3. **Handling Fees**: If asked about specific prices (tuition, bus fees, uniform cost), strictly say: "For the most accurate and up-to-date fee schedule for your child's grade, please contact our accounts office directly at +234 808 769 4737."
-4. **Vocational Emphasis**: If asked "Why Yosola?", mention the unique Vocational Wing and Entrepreneurial focus.
-5. **Unknowns**: If the answer is not in the text, say: "I don't have that specific detail right now, but please email us at yorsolaschools@gmail.com and we will get back to you immediately."
-6. **Brevity**: Keep responses under 4 sentences unless the user asks for a "list" or "details".
+1. Be Warm & Welcoming: Start answers with a polite, enthusiastic tone.
+2. Stick to Facts: Use the OFFICIAL KNOWLEDGE BASE. Do not invent facilities or policies.
+3. Handling Fees: If asked about specific prices, strictly say: "For the most accurate fee schedule for your child's grade, please contact our accounts office directly at +234 808 769 4737."
+4. Actionable Steps: If they ask about admission, tell them to fill out the "Request Information" form on the Admissions page or visit the office.
+5. Unknowns: If the answer is not in the text, say: "I don't have that specific detail right now, but please email us at yorsolaschools@gmail.com and we will get back to you immediately."
+6. Brevity: Keep responses under 4 sentences unless the user asks for a "list" or "details".
 
 CONTEXT:
 ${SCHOOL_CONTEXT}
 `;
 
-let cachedModelName: string | null = null;
+// Reuse one client instance instead of creating a new one per call
+const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
 
-/**
- * Helper: Selects a STABLE model.
- * It avoids "preview" or "experimental" models which cause crashes.
- */
-async function getWorkingModelName(): Promise<string> {
-  if (cachedModelName) return cachedModelName;
+export const sendMessageToGemini = async (message: string, history: any[]) => {
+  if (!apiKey || !ai) return "System Error: API Key missing in environment variables.";
 
   try {
-    console.log("🔍 Finding best stable model...");
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`
-    );
-    const data = await response.json();
+    // Ensure history maps perfectly to what the SDK expects
+    const formattedHistory = history.map(msg => ({
+      role: msg.role === 'user' ? 'user' : 'model',
+      parts: [{ text: msg.parts ? msg.parts[0].text : msg.text || '' }],
+    }));
 
-    if (!data.models) throw new Error("No models found");
-
-    const allModels = data.models.map((m: any) => m.name);
-    console.log("📋 Available Models:", allModels);
-
-    // === THE FIX: PRIORITY SELECTION ===
-    // We look for these specific STABLE models in order.
-    // We strictly avoid "preview" models unless absolutely necessary.
-    const priorityList = [
-      "models/gemini-2.5-flash",      // Newest & Fastest (Priority 1)
-      "models/gemini-2.0-flash",      // Reliable backup
-      "models/gemini-1.5-flash",      // Old standard
-      "models/gemini-1.5-flash-001", 
-      "models/gemini-pro"
-    ];
-
-    // 1. Try to find a match from our priority list
-    for (const preferred of priorityList) {
-      if (allModels.includes(preferred)) {
-        console.log(`✅ Selected Stable Model: ${preferred}`);
-        cachedModelName = preferred;
-        return preferred;
-      }
-    }
-
-    // 2. If none of the above exist, find ANY model that isn't a "preview"
-    const fallback = data.models.find((m: any) => 
-      m.name.includes("gemini") && 
-      m.supportedGenerationMethods.includes("generateContent") &&
-      !m.name.includes("preview") && // Critical: Avoid previews
-      !m.name.includes("experimental")
-    );
-
-    if (fallback) {
-        console.log(`⚠️ Using Fallback Model: ${fallback.name}`);
-        cachedModelName = fallback.name;
-        return fallback.name;
-    }
-
-    // 3. Absolute desperation: Take the first one
-    return data.models[0].name;
-
-  } catch (error) {
-    console.warn("⚠️ Model list failed. Defaulting to gemini-pro.");
-    return "models/gemini-pro";
-  }
-}
-
-export const sendMessageToGemini = async (
-  newMessage: string,
-  history: { role: string; parts: { text: string }[] }[]
-) => {
-  try {
-    if (!apiKey) return "System Error: API Key missing.";
-
-    // 1. Get safe model
-    const modelName = await getWorkingModelName();
-
-    // 2. Prepare content
-    const contents = [
-      {
-        role: "user",
-        parts: [{ text: `INSTRUCTION: ${SYSTEM_INSTRUCTION}` }]
+    const chat = ai.chats.create({
+      model: 'gemini-2.5-flash-lite', // active model, not deprecated; fast + cheap, good fit for a support widget
+      history: formattedHistory,
+      config: {
+        systemInstruction: SYSTEM_INSTRUCTION,
+        temperature: 0.7, // Balances warmth with factual accuracy
+        maxOutputTokens: 250, // Prevents excessively long essay responses
       },
-      {
-        role: "model",
-        parts: [{ text: "Understood." }]
-      },
-      ...history,
-      {
-        role: "user",
-        parts: [{ text: newMessage }]
-      }
-    ];
+    });
 
-    // 3. Fetch
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/${modelName}:generateContent?key=${apiKey}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: contents,
-          generationConfig: {
-            temperature: 0.7,
-            maxOutputTokens: 250,
-          }
-        }),
-      }
-    );
+    const response = await chat.sendMessage({ message });
+    return response.text ?? "I'm having trouble answering that. Please contact the office.";
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error("❌ Generation Error:", errorData);
-      return "I'm having technical difficulties. Please contact the school office.";
-    }
-
-    const data = await response.json();
-    return data.candidates?.[0]?.content?.parts?.[0]?.text || "I didn't understand that.";
-
-  } catch (error) {
-    console.error("❌ Network Error:", error);
-    return "Connection failed.";
+  } catch (error: any) {
+    console.error("Gemini API Error:", error);
+    // Temporary: surfaces the real error in the chat box for debugging.
+    // Swap back to a friendly fallback once everything is confirmed working.
+    return `Server Error: ${error.message || "Unknown error occurred"}`;
   }
 };

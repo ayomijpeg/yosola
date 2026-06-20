@@ -1,42 +1,50 @@
 import React from 'react';
-import { BookOpen, Users, Monitor, Heart } from 'lucide-react';
+import { BookOpen, Monitor, Heart, Briefcase, ShieldCheck } from 'lucide-react';
 
 const features = [
   {
-    title: 'Quality Teaching',
-    description: 'Our highly trained teachers ensure excellent delivery across all subjects, fostering academic brilliance.',
+    title: 'Academic Excellence',
+    description: 'We provide quality education with experienced teachers and excellent learning resources.',
     icon: <BookOpen size={32} className="text-school-500" />,
   },
   {
-    title: 'Modern Facilities',
-    description: 'Equipped with modern classrooms, ICT centers, and science labs to support practical learning.',
-    icon: <Monitor size={32} className="text-accent-500" />,
-  },
-  {
-    title: 'Character Development',
-    description: 'We go beyond academics to instill strong moral values, leadership, and social responsibility.',
+    title: 'Moral & Character Development',
+    description: 'We nurture disciplined, responsible, and confident students through strong moral values and character-building programs.',
     icon: <Heart size={32} className="text-school-500" />,
   },
   {
-    title: 'Extra-Curriculars',
-    description: 'We offer clubs, sports, and creative opportunities to ensure a holistic educational experience.',
-    icon: <Users size={32} className="text-accent-500" />,
+    title: 'Modern Learning Environment',
+    description: 'Our school offers well-equipped classrooms, science laboratories, ICT facilities, and a conducive environment for effective learning.',
+    icon: <Monitor size={32} className="text-accent-500" />,
   },
+  {
+    title: 'Extracurricular & Vocational',
+    description: 'Students develop their talents and leadership skills through sports, clubs, debates, and vocational entrepreneurship training (Garment making, Catering, Cosmetology, Phone repair, and Coding).',
+    icon: <Briefcase size={32} className="text-accent-500" />,
+  },
+  {
+    title: 'Secured Learning Environment',
+    description: 'We maintain a safe campus and provide personalized attention to help every student reach their full potential.',
+    icon: <ShieldCheck size={32} className="text-school-500" />,
+  }
 ];
 
 const Features: React.FC = () => {
   return (
     <section id="why-us" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Updated Header with Mission Statement */}
         <div className="text-center mb-16">
-          <h2 className="text-sm font-bold text-school-600 uppercase tracking-wide mb-2">What We Offer</h2>
-          <h3 className="text-3xl md:text-4xl font-serif font-bold text-slate-900">Empowering Futures</h3>
-          <p className="mt-4 text-slate-600 max-w-2xl mx-auto">
-            At Yosola School, we believe in nurturing well-rounded individuals through a blend of academics and skills.
+          <h2 className="text-sm font-bold text-school-600 uppercase tracking-wide mb-2">Our Mission & Values</h2>
+          <h3 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-6">Building Global Citizens</h3>
+          <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed p-6 bg-slate-50 rounded-xl border border-slate-100">
+             <span className="font-bold text-school-600">Our Mission:</span> To promote lifelong learning in an open and caring atmosphere that motivates students to be confident and responsible global citizens.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Updated grid to handle 5 items beautifully (3 columns on large screens) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
           {features.map((feature, index) => (
             <div
               key={index}
@@ -50,6 +58,7 @@ const Features: React.FC = () => {
             </div>
           ))}
         </div>
+        
       </div>
     </section>
   );

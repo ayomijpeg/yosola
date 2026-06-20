@@ -23,6 +23,7 @@ function App() {
         <Gallery />
         <Team />
         <Testimonials />
+        <ChatWidget /> {/* Gemini Powered Chat Bot */}
         <Admissions />
       </main>
 
